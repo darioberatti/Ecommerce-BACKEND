@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes, INTEGER } = require("sequelize");
 const db = require("../config/db");
 
 class Cart extends Model {}
@@ -10,7 +10,7 @@ Cart.init(
       allowNull: false,
     },
     productId: {
-      type: DataTypes.ARRAY,
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
       defaultValue: [],
     },
     completed: {

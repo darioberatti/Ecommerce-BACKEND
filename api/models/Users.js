@@ -19,6 +19,7 @@ Users.init(
   {
     isAdmin: {
       type: Sequelize.BOOLEAN,
+      defaultValue: false,
     },
     name: {
       type: Sequelize.STRING,
@@ -44,7 +45,7 @@ Users.init(
       allowNull: false,
     },
     history: {
-      type: Sequelize.ARRAY,
+      type: Sequelize.ARRAY(Sequelize.STRING),
     },
     salt: {
       type: Sequelize.STRING,
