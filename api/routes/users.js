@@ -15,7 +15,7 @@ usersRouter.post("/register", (req, res, next) => {
 
 usersRouter.post("/login", (req, res, next) => {
   const { email, password } = req.body;
-  User.findOne({ where: { email } }).then((user) => {
+  Users.findOne({ where: { email } }).then((user) => {
     user.validatePassword(password).then((isValid) => {
       if (!isValid) return res.send(401);
       const userData = {
