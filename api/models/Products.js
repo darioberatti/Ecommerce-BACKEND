@@ -5,10 +5,6 @@ class Products extends Model {}
 
 Products.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -55,5 +51,7 @@ Products.init(
   },
   { sequelize: db, modelName: "products" }
 );
+
+
 
 module.exports = Products;
