@@ -52,4 +52,6 @@ Products.init(
   { sequelize: db, modelName: "products" }
 );
 
+
+
 module.exports = Products;
