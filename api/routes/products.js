@@ -9,6 +9,7 @@ productsRouter.get("/:id", (req, res, next) => {
       res.send(product);
     })
     .catch((err) => next(err));
+})
 
 productsRouter.post("/create", (req, res, next) => {
   Products.create(req.body)
