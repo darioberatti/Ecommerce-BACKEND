@@ -9,7 +9,8 @@ productsRouter.get("/", (req, res, next) => {
     .then((productos) => {
       res.status(200).json(productos);
 
-
+});
+});
 
 productsRouter.get("/:id", (req, res, next) => {
   const { id } = req.params;
