@@ -1,20 +1,25 @@
 const express = require("express");
-const { validateToken, generateToken } = require("../config/token")
-
+const { validateToken, generateToken } = require("../config/token");
+const validateUser = require("../middleware/auth");
 const usersRouter = express.Router();
 const { Users } = require("../models");
 
 usersRouter.put("/:id", (req, res) => {
   const userId = req.params.id;
 
-  Users.update(req.body, {
-    where: {
-      id: userId,
-    },
-    returning: true,
-  })
-    .then(([rowsAffected, newInstance]) => res.send(newInstance[0]))
-    .catch((err) => console.error(err));
+  Users.findByPk(userId).then((user) => {
+    user
+      .update(req.body, {
+        returning: true,
+      })
+      .then((response) => res.send(response));
+  });
+});
+
+usersRouter.get("/:id", (req, res) => {
+  Users.findByPk(req.params.id).then((user) => {
+    res.send(user);
+  });
 });
 
 usersRouter.post("/register", (req, res, next) => {
@@ -43,16 +48,12 @@ usersRouter.post("/login", (req, res, next) => {
   });
 });
 
-usersRouter.post("/logout", (req, res) => {
-  const token = req.header("Authorization");
+usersRouter.post("/logout", validateUser, (req, res) => {
+  res.clearCookie("token").sendStatus(204);
+});
 
-  if (!token) {
-    return res.status(401).json({ mensaje: "Token no proporcionado" });
-  }
-
-  lista.push(token);
-
-  res.json({ mensaje: "Logout exitoso" });
+usersRouter.get("/me", validateUser, (req, res) => {
+  res.send(req.user);
 });
 
 module.exports = usersRouter;
