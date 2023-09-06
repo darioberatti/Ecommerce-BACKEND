@@ -3,7 +3,7 @@ const cartRouter = express.Router();
 const { Cart, Products } = require("../models"); 
 
 // Ruta para agregar un producto al carrito
-cartRouter.post("/addProductCart/:productId", (req, res, next) => {
+cartRouter.post("/cart/:productId", (req, res, next) => {
   const { user } = req; 
 
   const productId = req.params.productId;
