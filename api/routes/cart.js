@@ -2,8 +2,23 @@ const express = require("express");
 const cartRouter = express.Router();
 const { Cart, Products } = require("../models"); 
 
-// Ruta para agregar un producto al carrito
-cartRouter.post("/cart/:productId", (req, res, next) => {
+
+//Ruta para crear un carrito PARA REVISAR JUNTO AL FRONT
+
+cartRouter.post("/create", (req,res)=>{
+  Cart.create(req.body)
+    .then((newCart) => {
+      res.status(201).json(newCart);
+ })
+    .catch((error) => {
+      next(error);
+    });
+})
+
+
+// Ruta para agregar un producto al carrito PARA REVISAR JUNTO AL FRONT
+
+cartRouter.post("/:productId", (req, res, next) => {
   const { user } = req; 
 
   const productId = req.params.productId;
