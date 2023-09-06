@@ -22,7 +22,7 @@ app.use(
 
 //Requerir los modelos desde index.js de models
 
-db.sync({ force: true })
+db.sync({ force: false })
   .then(function () {
     app.listen(PORT, () =>
       console.log(`Servidor escuchando en el puerto ${PORT}`)
