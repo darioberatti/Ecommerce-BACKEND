@@ -5,10 +5,11 @@ class Cart extends Model {}
 
 Cart.init(
   {
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    // Mateo: "Comente esta prop porque al hacer la relacion Cart belnogs to Users se autogenera una columna de userId"
+    // userId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
     productId: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
       defaultValue: [],
