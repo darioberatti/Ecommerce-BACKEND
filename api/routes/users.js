@@ -29,4 +29,16 @@ usersRouter.post("/login", (req, res, next) => {
   });
 });
 
+usersRouter.post("/logout", (req, res) => {
+  const token = req.header("Authorization");
+
+  if (!token) {
+    return res.status(401).json({ mensaje: "Token no proporcionado" });
+  }
+
+  lista.push(token);
+
+  res.json({ mensaje: "Logout exitoso" });
+});
+
 module.exports = usersRouter;
