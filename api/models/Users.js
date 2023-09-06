@@ -67,4 +67,10 @@ Users.beforeCreate((user) => {
   });
 });
 
+Users.beforeUpdate((user) => {
+  return user.hash(user.password, user.salt).then((hash) => {
+    user.password = hash;
+  });
+});
+
 module.exports = Users;
