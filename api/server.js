@@ -2,6 +2,7 @@
 const express = require("express");
 const db = require("./config/db");
 const cors = require("cors");
+var cookieParser = require("cookie-parser");
 
 const routes = require("./routes");
 const models = require("./models");
@@ -9,6 +10,7 @@ const models = require("./models");
 const app = express();
 const PORT = 3001;
 
+app.use(cookieParser());
 app.use(express.json());
 app.use("/api", routes);
 app.use(
