@@ -11,7 +11,6 @@ const app = express();
 const PORT = 3001;
 app.use(cookieParser());
 app.use(express.json());
-app.use("/api", routes);
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -19,6 +18,7 @@ app.use(
     credentials: true,
   })
 );
+app.use("/api", routes);
 
 //Requerir los modelos desde index.js de models
 
