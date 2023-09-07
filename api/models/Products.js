@@ -52,7 +52,7 @@ Products.init(
   { sequelize: db, modelName: "products" }
 );
 
-Products.bulkCreate([{
+/* Products.bulkCreate([{
   name: "Camiseta de fútbol Adidas",
   type: "camiseta",
   size: ["M", "XL", "S"],
@@ -156,7 +156,7 @@ Products.bulkCreate([{
     "https://static.nike.com/a/images/t_default/28bcabff-a756-4a0c-8f2d-e95a261a6228/pantalones-fc-barcelona-jdi-qQ4Md0.png",
     "https://ejemplo.com/pantalon2.jpg",
   ],
-}])
+}]) */
 
 
 
