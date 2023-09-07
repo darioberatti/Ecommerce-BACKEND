@@ -16,11 +16,11 @@ usersRouter.put("/:id", (req, res) => {
   });
 });
 
-usersRouter.get("/:id", (req, res) => {
-  Users.findByPk(req.params.id).then((user) => {
-    res.send(user);
-  });
-});
+// usersRouter.get("/:id", (req, res) => {
+//   Users.findByPk(req.params.id).then((user) => {
+//     res.send(user);
+//   });
+// });
 
 usersRouter.post("/register", (req, res, next) => {
   Users.create(req.body)
@@ -52,8 +52,14 @@ usersRouter.post("/logout", validateUser, (req, res) => {
   res.clearCookie("token").sendStatus(204);
 });
 
-usersRouter.get("/me", validateUser, (req, res) => {
-  res.send(req.user);
+usersRouter.get("/me", (req, res) => {
+  let token = req.cookies.token;
+  if (!token) return res.sendStatus(401);
+
+  let data = validateToken(token);
+  if (!data) return res.sendStatus(401);
+
+  res.send(data);
 });
 
 module.exports = usersRouter;
