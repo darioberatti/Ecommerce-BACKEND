@@ -52,14 +52,8 @@ usersRouter.post("/logout", validateUser, (req, res) => {
   res.clearCookie("token").sendStatus(204);
 });
 
-usersRouter.get("/me", (req, res) => {
-  let token = req.cookies.token;
-  if (!token) return res.sendStatus(401);
-
-  let data = validateToken(token);
-  if (!data) return res.sendStatus(401);
-
-  res.send(data);
+usersRouter.get("/me", validateUser, (req, res) => {
+  res.send(req.user);
 });
 
 module.exports = usersRouter;
