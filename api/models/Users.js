@@ -29,6 +29,10 @@ Users.init(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    userName: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     address: {
       type: Sequelize.STRING,
       allowNull: false,
