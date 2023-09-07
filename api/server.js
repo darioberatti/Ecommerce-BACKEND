@@ -9,7 +9,6 @@ const models = require("./models");
 
 const app = express();
 const PORT = 3001;
-app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
@@ -18,6 +17,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(cookieParser());
 app.use("/api", routes);
 
 //Requerir los modelos desde index.js de models
