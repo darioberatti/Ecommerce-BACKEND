@@ -22,39 +22,42 @@ usersRouter.put("/:id", (req, res) => {
 //   });
 // });
 
-usersRouter.post("/register", (req, res, next) => {
-  Users.create(req.body)
-    .then((newUser) => {
-      res.status(201).json(newUser);
-    })
-    .catch((error) => {
-      next(error);
-    });
+usersRouter.post("/register", async (req, res, next) => {
+  const { email } = req.body;
+  try {
+    const exists = await Users.findOne({ where: { email } });
+
+    if (exists) return res.sendStatus(500);
+
+    const createdUser = await Users.create(req.body);
+    res.status(201).send(createdUser);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 usersRouter.post("/login", async (req, res, next) => {
-  try{
-  const { email, password } = req.body;
-  
-  const user = await Users.findOne({ where: { email }});
-  const validatePassword = await user.validatePassword(password)
-  
-  if(validatePassword){
-    const userData = {
-      email,
-      name: user.name,
-      lastname: user.lastname
-    }
-    const token = await generateToken(userData)
-    res.cookie("token", token).send(userData)
-  }else{
-    return res.sendStatus(401)
-  }
+  try {
+    const { email, password } = req.body;
 
-}catch(error){
-  console.error(error)
-  res.sendStatus(404)
-}
+    const user = await Users.findOne({ where: { email } });
+    const validatePassword = await user.validatePassword(password);
+
+    if (validatePassword) {
+      const userData = {
+        email,
+        name: user.name,
+        lastname: user.lastname,
+      };
+      const token = await generateToken(userData);
+      res.cookie("token", token).send(userData);
+    } else {
+      return res.sendStatus(401);
+    }
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(404);
+  }
 });
 
 usersRouter.post("/logout", validateUser, (req, res) => {
