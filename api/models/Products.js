@@ -53,18 +53,18 @@ Products.init(
 );
 
 /* Products.bulkCreate([{
-  name: "Camiseta de fútbol Adidas",
+  name: "Camiseta Retro Maradona 1993",
   type: "camiseta",
   size: ["M", "XL", "S"],
-  team: "Real Madrid",
-  country: "España",
-  year: 2023,
+  team: "Newell´s",
+  country: "Argentina",
+  year: 1993,
   price: 39.99,
   stock: 100,
-  description: "Camiseta oficial del Real Madrid para la temporada 2023",
+  description: "Camiseta Retro de Newell´s - Maradona #10 - 1993",
   urlImg: [
-    "https://www.camisetasclubes.com/shop/images/Real-Madrid/HMOGSHZ24.jpg",
-    "https://www.camisetasclubes.com/shop/images/Real-Madrid/HMOGSHZ24_1.jpg",
+    "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220420_092710-5342fc330e2a5cbc2716504584747851-1024-1024.webp",
+    "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220420_092637-25e7dcca9b63ef54b616504584747652-1024-1024.webp",
   ],
 },
 {
