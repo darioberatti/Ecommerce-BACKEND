@@ -151,8 +151,8 @@ Products.init(
   stock: 33,
   description: "Camiseta Retro - Holanda 1983",
   urlImg: [
-    "https://static.nike.com/a/images/t_default/28bcabff-a756-4a0c-8f2d-e95a261a6228/pantalones-fc-barcelona-jdi-qQ4Md0.png",
-    "https://ejemplo.com/pantalon2.jpg",
+    "https://acdn.mitiendanube.com/stores/216/721/products/holanda-fondo1-f619ae5775745fab9916349427844292-1024-1024.webp",
+    "https://acdn.mitiendanube.com/stores/216/721/products/holanda-fondo-esp1-2ed88fd0917632d0b616349427845677-1024-1024.webp",
   ],
 }]) */
 
