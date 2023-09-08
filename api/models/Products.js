@@ -127,6 +127,21 @@ Products.init(
   ],
 },
 {
+  name: "Camiseta Retro Argentina",
+  type: "camiseta",
+  size: ["M", "XL", "S"],
+  team: "Selección Argentina",
+  country: "Argentina",
+  year: 2006,
+  price: 99.99,
+  stock: 33,
+  description: "Camiseta Retro - Seleción Argentina - Mundial Alemania 2006 - Riquelme #10",
+  urlImg: [
+    "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230417_16264521-f59c3fa45a883a877616817599554439-1024-1024.webp",
+    "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230417_16273321-0376834174f7295c8116817599555204-1024-1024.webp",
+  ],
+},
+{
   name: "Camiseta Retro Independiente",
   type: "camiseta",
   size: ["M", "XL", "S"],
@@ -140,6 +155,7 @@ Products.init(
     "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220420_092212-2fcd1151e5c14f2cde16504581648660-1024-1024.webp",
   ],
 },
+
 {
   name: "Camiseta Retro Holanda",
   type: "camiseta",
