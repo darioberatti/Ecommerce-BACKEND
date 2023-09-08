@@ -63,8 +63,8 @@ Products.init(
   stock: 100,
   description: "Camiseta oficial del Real Madrid para la temporada 2023",
   urlImg: [
-    "https://www.camisetasclubes.com/shop/images/A1002419dsadmarides.png",
-    "https://ejemplo.com/camiseta2.jpg",
+    "https://www.camisetasclubes.com/shop/images/Real-Madrid/HMOGSHZ24.jpg",
+    "https://www.camisetasclubes.com/shop/images/Real-Madrid/HMOGSHZ24_1.jpg",
   ],
 },
 {
