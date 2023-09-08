@@ -32,20 +32,29 @@ usersRouter.post("/register", (req, res, next) => {
     });
 });
 
-usersRouter.post("/login", (req, res, next) => {
+usersRouter.post("/login", async (req, res, next) => {
+  try{
   const { email, password } = req.body;
-  Users.findOne({ where: { email } }).then((user) => {
-    user.validatePassword(password).then((isValid) => {
-      if (!isValid) return res.sendStatus(401);
-      const userData = {
-        email: email,
-        name: user.name,
-        lastname: user.lastname,
-      };
-      const token = generateToken(userData);
-      res.cookie("token", token).send(userData);
-    });
-  });
+  
+  const user = await Users.findOne({ where: { email }});
+  const validatePassword = await user.validatePassword(password)
+  
+  if(validatePassword){
+    const userData = {
+      email,
+      name: user.name,
+      lastname: user.lastname
+    }
+    const token = await generateToken(userData)
+    res.cookie("token", token).send(userData)
+  }else{
+    return res.sendStatus(401)
+  }
+
+}catch(error){
+  console.error(error)
+  res.sendStatus(404)
+}
 });
 
 usersRouter.post("/logout", validateUser, (req, res) => {
