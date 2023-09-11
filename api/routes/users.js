@@ -1,6 +1,6 @@
 const express = require("express");
 const { validateToken, generateToken } = require("../config/token");
-const validateUser = require("../middleware/auth");
+const { validateUser, validateAdmin } = require("../middleware/auth");
 const usersRouter = express.Router();
 const { Users } = require("../models");
 
@@ -66,6 +66,12 @@ usersRouter.post("/logout", validateUser, (req, res) => {
 
 usersRouter.get("/me", validateUser, (req, res) => {
   res.send(req.user);
+});
+
+usersRouter.get("/admin/all", validateUser, validateAdmin, (req, res) => {
+  Users.findAll()
+    .then((users) => res.send(users))
+    .catch((err) => console.log(err));
 });
 
 module.exports = usersRouter;

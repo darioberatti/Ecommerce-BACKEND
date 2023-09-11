@@ -2,7 +2,7 @@ const { Users, Products } = require("../models");
 
 function seedDataBase() {
   Users.create({
-    isAdmin: false,
+    isAdmin: true,
     name: "Ejemplo",
     lastName: "Prueba",
     userName: "Ejemplo12",
