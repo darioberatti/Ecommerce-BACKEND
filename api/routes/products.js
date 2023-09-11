@@ -1,6 +1,7 @@
 const express = require("express");
 const productsRouter = express.Router();
 const { Users, Products, Cart } = require("../models");
+const { validateUser, validateAdmin } = require("../middleware/auth");
 
 // Ruta para obtener todos los productos
 productsRouter.get("/", (req, res, next) => {
@@ -30,7 +31,7 @@ productsRouter.post("/create", (req, res, next) => {
     });
 });
 
-productsRouter.put("/:id", (req, res) => {
+productsRouter.put("/admin/:id", validateUser,validateAdmin, (req, res) => {
   const productId = req.params.id;
 
   Products.findByPk(productId).then((product) => {
