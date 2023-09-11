@@ -1,6 +1,17 @@
-const Products = require("../models/Products");
+const { Users, Products } = require("../models");
 
 function seedDataBase() {
+  Users.create({
+    isAdmin: false,
+    name: "Ejemplo",
+    lastName: "Prueba",
+    userName: "Ejemplo12",
+    address: "direccion 123",
+    email: "ejemplo@gmail.com",
+    password: "123456",
+    history: [],
+    salt: "",
+  });
   Products.bulkCreate([
     {
       name: "Camiseta Retro Maradona 1993",
@@ -126,4 +137,4 @@ function seedDataBase() {
   ]);
 }
 
-seedDataBase() ;
+seedDataBase();
