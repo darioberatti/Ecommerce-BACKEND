@@ -1,6 +1,7 @@
 const express = require("express");
 const productsRouter = express.Router();
 const { Users, Products, Cart } = require("../models");
+const {validateUser,validateAdmin} = require("../middleware/auth");
 
 // Ruta para obtener todos los productos
 productsRouter.get("/", (req, res, next) => {
@@ -42,6 +43,24 @@ productsRouter.put("/:id", (req, res) => {
       .catch(err=>console.error(err))
   });
 });
+
+productsRouter.delete("/admin/:productId",validateUser,validateAdmin, (req, res, next) => {
+  const productId = req.params.productId;
+  Products.findByPk(productId)
+    .then((product) => {
+      if (!product) {
+        return res.status(404).json({ message: "Producto no encontrado" });
+      }
+      return product.destroy()
+        .then(() => {
+          res.status(204).send(); 
+        });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
 
 
 module.exports = productsRouter;
