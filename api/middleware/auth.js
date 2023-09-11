@@ -1,4 +1,5 @@
 const { validateToken } = require("../config/token");
+const { Users } = require("../models");
 
 function validateUser(req, res, next) {
   let token = req.cookies.token;
@@ -11,4 +12,11 @@ function validateUser(req, res, next) {
   res.sendStatus(401);
 }
 
-module.exports = validateUser;
+function validateAdmin(req, res, next) {
+  const email = req.user.payload.email;
+  Users.findOne({ where: { email } }).then((user) => {
+    return user.isAdmin ? next() : res.sendStatus(401);
+  });
+}
+
+module.exports = { validateUser, validateAdmin };
