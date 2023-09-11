@@ -2,7 +2,7 @@ const express = require("express");
 const { validateToken, generateToken } = require("../config/token");
 const { validateUser, validateAdmin } = require("../middleware/auth");
 const usersRouter = express.Router();
-const { Users } = require("../models");
+const { Users, Cart } = require("../models");
 
 usersRouter.put("/:id", (req, res) => {
   const userId = req.params.id;
@@ -71,6 +71,25 @@ usersRouter.get("/me", validateUser, (req, res) => {
 usersRouter.get("/admin/all", validateUser, validateAdmin, (req, res) => {
   Users.findAll()
     .then((users) => res.send(users))
+    .catch((err) => console.log(err));
+});
+
+
+
+//Ruta para ver el historial de un usuario, FALTA TESTEAR
+usersRouter.get("/:userId/history", (req, res) => {
+  const userId = req.params.userId;
+  let arrUserCarts=[]
+  Users.findByPk(userId)
+    .then((user) => user.history)
+    .then((history) =>
+      history?.map((cart) => {
+        Cart.findByPk(cart.id)
+          .then((userCart) => arrUserCarts.push(userCart))
+          .catch((err) => console.log(err));
+      })
+    )
+    .then(()=>res.send(arrUserCarts))
     .catch((err) => console.log(err));
 });
 

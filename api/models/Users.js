@@ -49,7 +49,8 @@ Users.init(
       allowNull: false,
     },
     history: {
-      type: Sequelize.ARRAY(Sequelize.STRING),
+      type: Sequelize.ARRAY(Sequelize.INTEGER),
+      defaultValue: []
     },
     salt: {
       type: Sequelize.STRING,
