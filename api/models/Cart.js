@@ -8,6 +8,7 @@ Cart.init(
     completed: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: false
     },
     total: {
       type: DataTypes.INTEGER,
