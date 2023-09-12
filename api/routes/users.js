@@ -1,8 +1,8 @@
 const express = require("express");
 const { validateToken, generateToken } = require("../config/token");
-const validateUser = require("../middleware/auth");
+const { validateUser, validateAdmin } = require("../middleware/auth");
 const usersRouter = express.Router();
-const { Users } = require("../models");
+const { Users, Cart } = require("../models");
 
 usersRouter.put("/:id", (req, res) => {
   const userId = req.params.id;
@@ -22,30 +22,42 @@ usersRouter.put("/:id", (req, res) => {
 //   });
 // });
 
-usersRouter.post("/register", (req, res, next) => {
-  Users.create(req.body)
-    .then((newUser) => {
-      res.status(201).json(newUser);
-    })
-    .catch((error) => {
-      next(error);
-    });
+usersRouter.post("/register", async (req, res, next) => {
+  const { email } = req.body;
+  try {
+    const exists = await Users.findOne({ where: { email } });
+
+    if (exists) return res.sendStatus(500);
+
+    const createdUser = await Users.create(req.body);
+    res.status(201).send(createdUser);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
-usersRouter.post("/login", (req, res, next) => {
-  const { email, password } = req.body;
-  Users.findOne({ where: { email } }).then((user) => {
-    user.validatePassword(password).then((isValid) => {
-      if (!isValid) return res.sendStatus(401);
+usersRouter.post("/login", async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await Users.findOne({ where: { email } });
+    const validatePassword = await user.validatePassword(password);
+
+    if (validatePassword) {
       const userData = {
-        email: email,
+        email,
         name: user.name,
         lastname: user.lastname,
       };
-      const token = generateToken(userData);
+      const token = await generateToken(userData);
       res.cookie("token", token).send(userData);
-    });
-  });
+    } else {
+      return res.sendStatus(401);
+    }
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(404);
+  }
 });
 
 usersRouter.post("/logout", validateUser, (req, res) => {
@@ -54,6 +66,31 @@ usersRouter.post("/logout", validateUser, (req, res) => {
 
 usersRouter.get("/me", validateUser, (req, res) => {
   res.send(req.user);
+});
+
+usersRouter.get("/admin/all", validateUser, validateAdmin, (req, res) => {
+  Users.findAll()
+    .then((users) => res.send(users))
+    .catch((err) => console.log(err));
+});
+
+
+
+//Ruta para ver el historial de un usuario, FALTA TESTEAR
+usersRouter.get("/:userId/history", (req, res) => {
+  const userId = req.params.userId;
+  let arrUserCarts=[]
+  Users.findByPk(userId)
+    .then((user) => user.history)
+    .then((history) =>
+      history?.map((cart) => {
+        Cart.findByPk(cart.id)
+          .then((userCart) => arrUserCarts.push(userCart))
+          .catch((err) => console.log(err));
+      })
+    )
+    .then(()=>res.send(arrUserCarts))
+    .catch((err) => console.log(err));
 });
 
 module.exports = usersRouter;

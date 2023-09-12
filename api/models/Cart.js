@@ -8,10 +8,11 @@ Cart.init(
     completed: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: false
     },
     total: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      defaultValue: 0,
     },
   },
   { sequelize: db, modelName: "cart" }
