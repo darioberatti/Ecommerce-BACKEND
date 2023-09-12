@@ -33,6 +33,17 @@ productsRouter.get("/:id", (req, res, next) => {
     .catch((err) => next(err));
 });
 
+productsRouter.get("/category/:id", (req, res, next) => {
+  const id = req.params.id;
+  Products.findAll({
+    where: { categoryId: id },
+  })
+    .then((products) => {
+      res.send(products);
+    })
+    .catch((err) => next(err));
+});
+
 productsRouter.post("/create", (req, res, next) => {
   Products.create(req.body)
     .then((newProduct) => {

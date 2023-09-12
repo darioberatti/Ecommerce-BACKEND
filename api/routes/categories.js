@@ -2,11 +2,25 @@ const express = require("express");
 const categoriesRouter = express.Router();
 const { Users, Products, Cart, Categories } = require("../models");
 const { validateAdmin, validateUser } = require("../middleware/auth");
+const { Op, Sequelize } = require("sequelize");
 
-categoriesRouter.get("/:id", (req, res) => {
+/* categoriesRouter.get("/:id", (req, res) => {
   Categories.findByPk(req.params.id)
     .then((category) => res.status(200).json(category))
     .catch((err) => console.log(err));
+});
+ */
+categoriesRouter.get("/:type", (req, res, next) => {
+  const type = req.params.type;
+  Categories.findOne({
+    where: Sequelize.where(Sequelize.fn("lower", Sequelize.col("type")), {
+      [Op.like]: `%${type.toLowerCase()}%`,
+    }),
+  })
+    .then((products) => {
+      res.send(products);
+    })
+    .catch((err) => next(err));
 });
 
 categoriesRouter.get("/", (req, res) => {
