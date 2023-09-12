@@ -127,6 +127,7 @@ cartRouter.put("/:id", validateUser, (req, res) => {
 });
 
 //Ruta para obtener las compras ya completadas de un usuario
+//REVISAR, HAY UN BUG
 cartRouter.get("/:userId/history",validateUser ,(req, res) => {
   const userId = req.params.userId;
   Cart.findAll({ where: { userId: userId , completed : true } })
