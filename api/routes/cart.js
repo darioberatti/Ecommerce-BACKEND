@@ -36,7 +36,7 @@ cartRouter.post("/:productId", validateUser, (req, res, next) => {
         if (!product)
           return res.status(404).json({ message: "Producto no encontrado" });
 
-        Cart.findOne({ where: { userId: user.id } })
+        Cart.findOne({ where: { userId: user.id, completed: false } })
           .then((cart) => {
             if (!cart) {
               return Cart.create(
@@ -113,10 +113,23 @@ cartRouter.delete("/:productId", validateUser, async (req, res, next) => {
   }
 });
 
+
+cartRouter.put("/:id", validateUser, (req, res) => {
+  const cartId = req.params.id;
+  
+  Cart.findByPk(cartId).then((cart) => {
+    cart
+    .update(req.body, {
+      returning: true,
+    })
+    .then((response) => res.status(200).send(response))
+    .catch((err) => console.error(err));
+  });
+});
+
 cartRouter.get(":userId/history", (req, res) => {
   const userId = req.params.id;
-  Cart.findAll({ where: { userId } })
-  .then(res=>console.log(res))
+  Cart.findAll({ where: { userId } }).then((res) => console.log(res));
 });
 
 module.exports = cartRouter;
