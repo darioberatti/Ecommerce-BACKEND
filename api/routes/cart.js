@@ -113,4 +113,10 @@ cartRouter.delete("/:productId", validateUser, async (req, res, next) => {
   }
 });
 
+cartRouter.get(":userId/history", (req, res) => {
+  const userId = req.params.id;
+  Cart.findAll({ where: { userId } })
+  .then(res=>console.log(res))
+});
+
 module.exports = cartRouter;

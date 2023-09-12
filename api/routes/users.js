@@ -77,20 +77,22 @@ usersRouter.get("/admin/all", validateUser, validateAdmin, (req, res) => {
 
 
 //Ruta para ver el historial de un usuario, FALTA TESTEAR
-usersRouter.get("/:userId/history", (req, res) => {
-  const userId = req.params.userId;
-  let arrUserCarts=[]
-  Users.findByPk(userId)
-    .then((user) => user.history)
-    .then((history) =>
-      history?.map((cart) => {
-        Cart.findByPk(cart.id)
-          .then((userCart) => arrUserCarts.push(userCart))
-          .catch((err) => console.log(err));
-      })
-    )
-    .then(()=>res.send(arrUserCarts))
-    .catch((err) => console.log(err));
-});
+// usersRouter.get("/:userId/history", (req, res) => {
+//   const userId = req.params.userId;
+//   let arrUserCarts=[]
+//   Users.findByPk(userId)
+//     .then((user) => user.history)
+//     .then((history) =>
+//       history?.map((cart) => {
+//         Cart.findByPk(cart.id)
+//           .then((userCart) => arrUserCarts.push(userCart))
+//           .catch((err) => console.log(err));
+//       })
+//     )
+//     .then(()=>res.send(arrUserCarts))
+//     .catch((err) => console.log(err));
+// });
+
+
 
 module.exports = usersRouter;
