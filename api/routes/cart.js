@@ -1,6 +1,6 @@
 const express = require("express");
 const cartRouter = express.Router();
-const {validateUser} = require("../middleware/auth.js");
+const { validateUser } = require("../middleware/auth.js");
 const { Cart, Products, Users, cart_products } = require("../models");
 
 //RUTA PARA OBTENER TODOS LOS PRODUCTOS DEL CARRITO DE UN USER ESPECIFICO
@@ -13,11 +13,11 @@ cartRouter.get("/", validateUser, (req, res, next) => {
       Cart.findOne({ where: { userId: user.id, completed: false } })
         .then((cart) => {
           if (!cart) return res.sendStatus(500).end();
-          return cart.getProducts().then((items)=>{
-            res.send({ items, cart})
-          })
+          return cart.getProducts().then((items) => {
+            res.send({ items, cart });
+          });
         })
-     /*    .then((carrito) => res.send()) */
+        /*    .then((carrito) => res.send()) */
         .catch((err) => next(err));
     })
     .catch((err) => next(err));
