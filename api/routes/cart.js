@@ -3,7 +3,7 @@ const cartRouter = express.Router();
 const { validateUser } = require("../middleware/auth.js");
 const { Cart, Products, Users, cart_products } = require("../models");
 
-//RUTA PARA OBTENER TODOS LOS PRODUCTOS DEL CARRITO DE UN USER ESPECIFICO
+//RUTA PARA OBTENER TODOS LOS PRODUCTOS DEL CARRITO ACTIVO DE UN USER ESPECIFICO
 
 cartRouter.get("/", validateUser, (req, res, next) => {
   const { email } = req.user.payload;
@@ -36,7 +36,7 @@ cartRouter.post("/:productId", validateUser, (req, res, next) => {
         if (!product)
           return res.status(404).json({ message: "Producto no encontrado" });
 
-        Cart.findOne({ where: { userId: user.id , completed: false } })
+        Cart.findOne({ where: { userId: user.id, completed: false } })
           .then((cart) => {
             if (!cart) {
               return Cart.create(
@@ -113,10 +113,8 @@ cartRouter.delete("/:productId", validateUser, async (req, res, next) => {
   }
 });
 
-
 cartRouter.put("/:id", validateUser, (req, res) => {
   const cartId = req.params.id;
-
 
   Cart.findByPk(cartId).then((cart) => {
     cart
@@ -126,6 +124,24 @@ cartRouter.put("/:id", validateUser, (req, res) => {
       .then((response) => res.status(200).send(response))
       .catch((err) => console.error(err));
   });
+});
+
+//Ruta para obtener las compras ya completadas de un usuario
+//REVISAR, HAY UN BUG
+cartRouter.get("/:userId/history",validateUser ,(req, res) => {
+  const userId = req.params.userId;
+  Cart.findAll({ where: { userId: userId , completed : true } })
+    .then((result) => res.send(result))
+    .catch((err) => console.log(err));
+});
+
+//Ruta para obtener los productos de una compra
+
+cartRouter.get("/:cartId", (req, res) => {
+  Cart.findOne({ where: { id: req.params.cartId } })
+    .then((cart) => cart.getProducts())
+    .then((allProducts) => res.send(allProducts))
+    .catch(err=>console.log(err))
 });
 
 module.exports = cartRouter;
