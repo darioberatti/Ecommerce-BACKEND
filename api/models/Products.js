@@ -1,4 +1,4 @@
-const { DataTypes, Model, STRING, INTEGER } = require("sequelize");
+const { DataTypes, Model } = require("sequelize");
 const db = require("../config/db");
 
 class Products extends Model {}
@@ -6,10 +6,6 @@ class Products extends Model {}
 Products.init(
   {
     name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    type: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -21,11 +17,11 @@ Products.init(
       allowNull: false,
     },
     country: {
-      type: STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     year: {
-      type: INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     price: {
