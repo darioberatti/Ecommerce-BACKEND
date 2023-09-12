@@ -1,6 +1,6 @@
 const express = require("express");
 const cartRouter = express.Router();
-const validateUser = require("../middleware/auth.js");
+const {validateUser} = require("../middleware/auth.js");
 const { Cart, Products, Users, cart_products } = require("../models");
 
 //RUTA PARA OBTENER TODOS LOS PRODUCTOS DEL CARRITO DE UN USER ESPECIFICO
