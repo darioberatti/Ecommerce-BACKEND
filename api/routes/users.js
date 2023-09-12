@@ -48,6 +48,7 @@ usersRouter.post("/login", async (req, res, next) => {
         email,
         name: user.name,
         lastname: user.lastname,
+        isAdmin: user.isAdmin
       };
       const token = await generateToken(userData);
       res.cookie("token", token).send(userData);
