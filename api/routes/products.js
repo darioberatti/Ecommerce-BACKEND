@@ -1,9 +1,8 @@
 const express = require("express");
 const productsRouter = express.Router();
-const { Users, Products, Cart } = require("../models");
-const { Op, Sequelize } = require("sequelize");
+const { Users, Products, Cart, Categories } = require("../models");
 const { validateUser, validateAdmin } = require("../middleware/auth");
-
+const { Op, Sequelize } = require("sequelize");
 
 // Ruta para obtener todos los productos
 productsRouter.get("/", (req, res, next) => {
@@ -27,7 +26,7 @@ productsRouter.get("/search", (req, res, next) => {
 
 productsRouter.get("/:id", (req, res, next) => {
   const { id } = req.params;
-  Products.findByPk(id)
+  Products.findByPk(id, { include: { model: Categories, as: "category" } })
     .then((product) => {
       res.send(product);
     })
@@ -44,7 +43,7 @@ productsRouter.post("/create", (req, res, next) => {
     });
 });
 
-productsRouter.put("/admin/:id", validateUser,validateAdmin, (req, res) => {
+productsRouter.put("/admin/:id", validateUser, validateAdmin, (req, res) => {
   const productId = req.params.id;
 
   Products.findByPk(productId).then((product) => {
@@ -56,5 +55,26 @@ productsRouter.put("/admin/:id", validateUser,validateAdmin, (req, res) => {
       .catch((err) => console.error(err));
   });
 });
+
+productsRouter.delete(
+  "/admin/:productId",
+  validateUser,
+  validateAdmin,
+  (req, res, next) => {
+    const productId = req.params.productId;
+    Products.findByPk(productId)
+      .then((product) => {
+        if (!product) {
+          return res.status(404).json({ message: "Producto no encontrado" });
+        }
+        return product.destroy().then(() => {
+          res.status(204).send();
+        });
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
+);
 
 module.exports = productsRouter;

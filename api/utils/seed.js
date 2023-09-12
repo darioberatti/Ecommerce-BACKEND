@@ -1,4 +1,22 @@
 const { Users, Products } = require("../models");
+const Categories = require("../models/Categories");
+
+function seedDataBaseCategories() {
+  Categories.bulkCreate([
+    {
+      type: "Camisetas",
+    },
+    {
+      type: "Buzos",
+    },
+    {
+      type: "Shorts",
+    },
+    {
+      type: "Pantalones",
+    },
+  ]);
+}
 
 function seedDataBase() {
   Users.create({
@@ -12,10 +30,11 @@ function seedDataBase() {
     history: [],
     salt: "",
   });
+
   Products.bulkCreate([
     {
       name: "Camiseta Retro Maradona 1993",
-      type: "camiseta",
+      categoryId: 1,
       size: ["M", "XL", "S"],
       team: "Newell´s",
       country: "Argentina",
@@ -30,7 +49,7 @@ function seedDataBase() {
     },
     {
       name: "Buzo Retro Entrenamiento Argentina",
-      type: "buzo",
+      categoryId: 2,
       size: ["M", "XL", "S"],
       team: "Selección Argentina",
       country: "Argentina",
@@ -44,7 +63,7 @@ function seedDataBase() {
     },
     {
       name: "Camiseta Retro River Plate",
-      type: "camiseta",
+      categoryId: 1,
       size: ["M", "XL", "S"],
       team: "River Plate",
       country: "Argentina",
@@ -59,7 +78,7 @@ function seedDataBase() {
     },
     {
       name: "Camiseta Retro Boca Juniors",
-      type: "camiseta",
+      categoryId: 1,
       size: ["M", "XL", "S"],
       team: "Boca",
       country: "Argentina",
@@ -74,7 +93,7 @@ function seedDataBase() {
     },
     {
       name: "Short Retro Argentina",
-      type: "short",
+      categoryId: 3,
       size: ["M", "XL", "S"],
       team: "Selección Argentina",
       country: "Argentina",
@@ -90,7 +109,7 @@ function seedDataBase() {
     },
     {
       name: "Camiseta Retro Argentina",
-      type: "camiseta",
+      categoryId: 1,
       size: ["M", "XL", "S"],
       team: "Selección Argentina",
       country: "Argentina",
@@ -106,7 +125,7 @@ function seedDataBase() {
     },
     {
       name: "Camiseta Retro Independiente",
-      type: "camiseta",
+      categoryId: 1,
       size: ["M", "XL", "S"],
       team: "Independiente",
       country: "Argentina",
@@ -121,7 +140,7 @@ function seedDataBase() {
 
     {
       name: "Camiseta Retro Holanda",
-      type: "camiseta",
+      categoryId: 1,
       size: ["M", "XL", "S"],
       team: "Selección Holanda",
       country: "Holanda",
@@ -137,4 +156,5 @@ function seedDataBase() {
   ]);
 }
 
+seedDataBaseCategories();
 seedDataBase();
