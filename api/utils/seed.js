@@ -1,22 +1,5 @@
 const { Users, Products } = require("../models");
-const Categories = require("../models/Categories");
 
-function seedDataBaseCategories() {
-  Categories.bulkCreate([
-    {
-      type: "Camisetas",
-    },
-    {
-      type: "Buzos",
-    },
-    {
-      type: "Shorts",
-    },
-    {
-      type: "Pantalones",
-    },
-  ]);
-}
 
 function seedDataBase() {
   Users.create({
@@ -156,5 +139,5 @@ function seedDataBase() {
   ]);
 }
 
-seedDataBaseCategories();
+
 seedDataBase();
