@@ -114,6 +114,8 @@ cartRouter.delete("/:productId", validateUser, async (req, res, next) => {
   }
 });
 
+
+//Ruta que actualiza un cart, la usamos para realizar el checkout, confirmar la compra y enviar el mail
 cartRouter.put("/:id", validateUser, (req, res) => {
   const cartId = req.params.id;
 
@@ -131,6 +133,7 @@ cartRouter.put("/:id", validateUser, (req, res) => {
             subject: "Confirmacion de Compra Retro F.C.", // Subject line
             html: `<h2>Hola ${user.name}! Tu compra fue realizada con éxito</h2>
             <p>En los próximos días estarás recibiendo tus productos en ${response.deliveryAddress} , ${response.deliveryCity}.</p>
+            <p>Tu código de compra por cualquier inconveniente es: ${response.id}</p>
             <h4><b>Muchisimas gracias por confiar en nosotros!</b></h4>
             <p>Retro F.C.</p>`,
           });
@@ -142,16 +145,7 @@ cartRouter.put("/:id", validateUser, (req, res) => {
   });
 });
 
-//Ruta para obtener las compras ya completadas de un usuario
-//REVISAR, HAY UN BUG
-cartRouter.get("/:userId/history", validateUser, (req, res) => {
-  const userId = req.params.userId;
-  Cart.findAll({ where: { userId: userId, completed: true } })
-    .then((result) => res.send(result))
-    .catch((err) => console.log(err));
-});
 
-//Ruta para obtener los productos de una compra
 
 cartRouter.get("/:cartId", (req, res) => {
   Cart.findOne({ where: { id: req.params.cartId } })
