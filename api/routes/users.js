@@ -76,21 +76,16 @@ usersRouter.get("/admin/all", validateUser, validateAdmin, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-//Ruta para ver el historial de un usuario, FALTA TESTEAR
-// usersRouter.get("/:userId/history", (req, res) => {
-//   const userId = req.params.userId;
-//   let arrUserCarts=[]
-//   Users.findByPk(userId)
-//     .then((user) => user.history)
-//     .then((history) =>
-//       history?.map((cart) => {
-//         Cart.findByPk(cart.id)
-//           .then((userCart) => arrUserCarts.push(userCart))
-//           .catch((err) => console.log(err));
-//       })
-//     )
-//     .then(()=>res.send(arrUserCarts))
-//     .catch((err) => console.log(err));
-// });
+
+// Ruta para obtener las compras ya completadas de un usuario
+// REVISAR, A VECES TIRA UN ERROR EN LA TERMINAL
+usersRouter.get("/:userId/history", validateUser, (req, res) => {
+  const userId = req.params.userId;
+  Cart.findAll({ where: { userId: userId, completed: true } })
+    .then((result) => res.send(result))
+    .catch((err) => console.log(err));
+});
+
+
 
 module.exports = usersRouter;
