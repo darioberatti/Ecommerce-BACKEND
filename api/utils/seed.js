@@ -4,11 +4,11 @@ const { Users, Products } = require("../models");
 function seedDataBase() {
   Users.create({
     isAdmin: true,
-    name: "Ejemplo",
-    lastName: "Prueba",
-    userName: "Ejemplo12",
+    name: "Admin",
+    lastName: "Retro",
+    userName: "admin1",
     address: "direccion 123",
-    email: "ejemplo@gmail.com",
+    email: "e.retrofutbolclub@gmail.com",
     password: "123456",
     history: [],
     salt: "",
