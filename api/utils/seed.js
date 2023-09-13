@@ -1,6 +1,5 @@
 const { Users, Products } = require("../models");
 
-
 function seedDataBase() {
   Users.create({
     isAdmin: true,
@@ -16,15 +15,15 @@ function seedDataBase() {
 
   Products.bulkCreate([
     {
-      name: "Camiseta Retro Maradona 1993",
+      name: "Camiseta Retro Newell´s Maradona",
       categoryId: 1,
       size: ["M", "XL", "S"],
-      team: "Newell´s",
+      team: "Newell´s Old Boys",
       country: "Argentina",
       year: 1993,
-      price: 39.99,
+      price: 99.99,
       stock: 100,
-      description: "Camiseta Retro de Newell´s - Maradona #10 - 1993",
+      description: "Camiseta Retro - Newell´s Old Boys - Maradona #10 - 1993",
       urlImg: [
         "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220420_092710-5342fc330e2a5cbc2716504584747851-1024-1024.webp",
         "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220420_092637-25e7dcca9b63ef54b616504584747652-1024-1024.webp",
@@ -37,7 +36,7 @@ function seedDataBase() {
       team: "Selección Argentina",
       country: "Argentina",
       year: 1994,
-      price: 99.99,
+      price: 129.99,
       stock: 33,
       description: "Buzo Retro - Entrenamiento Argentina - Mundial USA 1994",
       urlImg: [
@@ -53,10 +52,24 @@ function seedDataBase() {
       year: 1996,
       price: 99.99,
       stock: 33,
-      description: "Camiseta Retro - River Plate tricampeón - 1996/1997",
+      description: "Camiseta Retro - River Plate - Tricampeón - 1996/1997",
       urlImg: [
         "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220426_0942481-f2f768f1a79e1835a216886794215806-1024-1024.webp",
         "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220426_0943121-a59c5042a60f03fadf16886794215805-1024-1024.webp",
+      ],
+    },
+    {
+      name: "Short Retro Boca Juniors",
+      categoryId: 3,
+      size: ["M"],
+      team: "Boca Juniors",
+      country: "Argentina",
+      year: 1995,
+      price: 49.99,
+      stock: 33,
+      description: "Short Retro - Boca Juniors - Maradona #10 - 1995",
+      urlImg: [
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220420_094746-bc4818946ac5748d2d16504596832834-1024-1024.webp",
       ],
     },
     {
@@ -65,13 +78,27 @@ function seedDataBase() {
       size: ["M", "XL", "S"],
       team: "Boca",
       country: "Argentina",
-      year: 2010,
+      year: 2001,
       price: 99.99,
       stock: 33,
       description: "Camiseta Retro - Boca Juniors - Libertadores 2001",
       urlImg: [
-        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230222_1844111-7e6869e3b187588db816771167010135-1024-1024.webp",
-        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230222_1901431-0011e08a8f5bab3d1716771167011081-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/216/721/products/river-tricolor-frente1-bc2e7e43af52d44f5e16129179482050-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/216/721/products/river-tricolor-espalda1-6cb0c8209c99582f3b16129179483302-1024-1024.webp",
+      ],
+    },
+    {
+      name: "Camiseta Retro River Plate",
+      categoryId: 1,
+      size: ["M", "S"],
+      team: "River Plate",
+      country: "Argentina",
+      year: 1999,
+      price: 99.99,
+      stock: 33,
+      description: "Camiseta Retro - River Plate - Tricolor - 1999",
+      urlImg: [
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230527_1510011-4f0626618e00c7568316852111126600-1024-1024.webp",
       ],
     },
     {
@@ -81,7 +108,7 @@ function seedDataBase() {
       team: "Selección Argentina",
       country: "Argentina",
       year: 1986,
-      price: 99.99,
+      price: 49.99,
       stock: 33,
       description:
         "Short Retro - Seleción Argentina - Mundial México 1986 - Maradona #10",
@@ -107,6 +134,22 @@ function seedDataBase() {
       ],
     },
     {
+      name: "Camiseta Retro Boca Juniors",
+      categoryId: 1,
+      size: ["M", "S"],
+      team: "Boca",
+      country: "Argentina",
+      year: 2007,
+      price: 99.99,
+      stock: 33,
+      description:
+        "Camiseta Retro - Boca Juniors - Libertadores 2007 - Riquelme #10",
+      urlImg: [
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230222_1844111-7e6869e3b187588db816771167010135-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230222_1901431-0011e08a8f5bab3d1716771167011081-1024-1024.webp",
+      ],
+    },
+    {
       name: "Camiseta Retro Independiente",
       categoryId: 1,
       size: ["M", "XL", "S"],
@@ -120,7 +163,50 @@ function seedDataBase() {
         "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220420_092212-2fcd1151e5c14f2cde16504581648660-1024-1024.webp",
       ],
     },
-
+    {
+      name: "Camiseta Retro River Plate",
+      categoryId: 1,
+      size: ["M", "S"],
+      team: "River Plate",
+      country: "Argentina",
+      year: 1992,
+      price: 99.99,
+      stock: 33,
+      description: "Camiseta Retro - River Plate - 1992",
+      urlImg: [
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230527_1510011-4f0626618e00c7568316852111126600-1024-1024.webp",
+      ],
+    },
+    {
+      name: "Short Retro Argentina",
+      categoryId: 3,
+      size: ["M", "S"],
+      team: "Selección Argentina",
+      country: "Argentina",
+      year: 1994,
+      price: 49.99,
+      stock: 33,
+      description:
+        "Short Retro - Seleción Argentina - Mundial USA 1994 - Maradona #10",
+      urlImg: [
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220406_115150-260a6351144feef3ea16650648843413-1024-1024.webp",
+      ],
+    },
+    {
+      name: "Buzo Retro Boca Juniors",
+      categoryId: 2,
+      size: ["M", "S"],
+      team: "Boca",
+      country: "Argentina",
+      year: 1981,
+      price: 99.99,
+      stock: 33,
+      description: "Buzo Retro - Boca Juniors - Metropolitano 1981",
+      urlImg: [
+        "https://acdn.mitiendanube.com/stores/216/721/products/camperita-boca-81-frente1-6410cb2b4a32e48a0216179036602496-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/216/721/products/camperita-boca-81-espaldaa1-8a9d5fdc4541a0472116179036601980-1024-1024.webp",
+      ],
+    },
     {
       name: "Camiseta Retro Holanda",
       categoryId: 1,
@@ -130,14 +216,42 @@ function seedDataBase() {
       year: 1983,
       price: 99.99,
       stock: 33,
-      description: "Camiseta Retro - Holanda 1983",
+      description: "Camiseta Retro - Selección Holanda 1983",
       urlImg: [
         "https://acdn.mitiendanube.com/stores/216/721/products/holanda-fondo1-f619ae5775745fab9916349427844292-1024-1024.webp",
         "https://acdn.mitiendanube.com/stores/216/721/products/holanda-fondo-esp1-2ed88fd0917632d0b616349427845677-1024-1024.webp",
       ],
     },
+    {
+      name: "Camiseta Retro Independiente",
+      categoryId: 1,
+      size: ["M", "S"],
+      team: "Independiente",
+      country: "Argentina",
+      year: 1978,
+      price: 99.99,
+      stock: 33,
+      description: "Camiseta Retro - Independiente - Bochini #10 1978",
+      urlImg: [
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220420_092212-2fcd1151e5c14f2cde16504581648660-1024-1024.webp",
+      ],
+    },
+    {
+      name: "Camiseta Retro Boca Juniors",
+      categoryId: 1,
+      size: ["M", "S"],
+      team: "Boca",
+      country: "Argentina",
+      year: 1981,
+      price: 99.99,
+      stock: 33,
+      description: "Camiseta Retro - Boca Juniors - Metropolitano 1981",
+      urlImg: [
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230222_1844111-7e6869e3b187588db816771167010135-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230222_1901431-0011e08a8f5bab3d1716771167011081-1024-1024.webp",
+      ],
+    },
   ]);
 }
-
 
 seedDataBase();
