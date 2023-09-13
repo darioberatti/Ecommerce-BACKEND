@@ -1,11 +1,11 @@
 # RETRO FUTBOL CLUB (BACK-END)
-##Descripcion
+## Descripcion
 <p>
 Retro Futbol Club es un E-commerce el cual surge como un proyecto propuesto por <a href="https://www.plataforma5.la/" target="blank">Plataforma 5 - Coding Bootcamp.</a> 
 Nos dedicamos a la venta de indumentaria deportiva antigua (precisamente Futbol) de los jugadores mas exitosos en el campo.
 </p>
 
-##Inicializacion
+## Inicializacion
 
 - Primero clonamos este repositorio.
 - Abrimos una nueva terminal, nos paramos sobre la carpeta del repositorio y ejecutamos el comando  "code ." para abrirlo en **Visual Studio Code** o tu editor de texto de preferencia. 
@@ -19,7 +19,7 @@ Nos dedicamos a la venta de indumentaria deportiva antigua (precisamente Futbol)
 ## Finalmente
 ###### TE SUGERIMOS IR Y SEGUIR LOS PASOS DEL ARCHIVO "README.MD" DEL REPOSITORIO QUE PERTENECE AL FRONT-END DE ESTE PROYECTO: <a href="https://github.com/martinferrando2005/Ecommerce-FRONTEND.git">Ecommerce-FRONTEND</a>
 
-##Integrantes
+## Integrantes
 
 ```javascript 
 const integrantes = [ "Mateo Navarro", " Santiago Moran", " Dario Beratti", " Martin Ferrando"]
