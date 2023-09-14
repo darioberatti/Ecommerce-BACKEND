@@ -83,8 +83,8 @@ function seedDataBase() {
       stock: 33,
       description: "Camiseta Retro - Boca Juniors - Libertadores 2001",
       urlImg: [
-        "https://acdn.mitiendanube.com/stores/216/721/products/river-tricolor-frente1-bc2e7e43af52d44f5e16129179482050-1024-1024.webp",
-        "https://acdn.mitiendanube.com/stores/216/721/products/river-tricolor-espalda1-6cb0c8209c99582f3b16129179483302-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230222_1844111-7e6869e3b187588db816771167010135-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230222_1901431-0011e08a8f5bab3d1716771167011081-1024-1024.webp",
       ],
     },
     {
@@ -98,7 +98,8 @@ function seedDataBase() {
       stock: 33,
       description: "Camiseta Retro - River Plate - Tricolor - 1999",
       urlImg: [
-        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230527_1510011-4f0626618e00c7568316852111126600-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/216/721/products/river-tricolor-frente1-bc2e7e43af52d44f5e16129179482050-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/216/721/products/river-tricolor-espalda1-6cb0c8209c99582f3b16129179483302-1024-1024.webp",
       ],
     },
     {
@@ -145,8 +146,8 @@ function seedDataBase() {
       description:
         "Camiseta Retro - Boca Juniors - Libertadores 2007 - Riquelme #10",
       urlImg: [
-        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230222_1844111-7e6869e3b187588db816771167010135-1024-1024.webp",
-        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230222_1901431-0011e08a8f5bab3d1716771167011081-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230803_1523581-341c647f4451a39f7b16911958545344-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230803_15242911-bfb41a90873743e32116911958724530-1024-1024.webp",
       ],
     },
     {
@@ -247,8 +248,8 @@ function seedDataBase() {
       stock: 33,
       description: "Camiseta Retro - Boca Juniors - Metropolitano 1981",
       urlImg: [
-        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230222_1844111-7e6869e3b187588db816771167010135-1024-1024.webp",
-        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230222_1901431-0011e08a8f5bab3d1716771167011081-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220406_084820-359bb29302444e6f5216492753616594-1024-1024.webp",
+        "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220406_084930-4739cf4747dbb5c31716492753616613-1024-1024.webp",
       ],
     },
   ]);
