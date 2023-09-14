@@ -30,4 +30,11 @@ Nos dedicamos a la venta de indumentaria deportiva antigua (precisamente Futbol)
 ## Finalmente
 ###### TE SUGERIMOS IR Y SEGUIR LOS PASOS DEL ARCHIVO "README.MD" DEL REPOSITORIO QUE PERTENECE AL FRONT-END DE ESTE PROYECTO: <a href="https://github.com/martinferrando2005/Ecommerce-FRONTEND.git">Ecommerce-FRONTEND</a>
 
+## Autores
+
+```javascript 
+const autores = [ "Mateo Navarro", " Santiago Moran", " Dario Beratti", " Martin Ferrando"]
+autores.join(",") // "Mateo Navarro, Santiago Moran, Dario Beratti, Martin Ferrando"
+```
+
 
