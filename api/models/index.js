@@ -12,10 +12,6 @@ const cart_products = db.define("cart_products", {
   }
 })
 
-
-// Products.belongsTo(Categories , { foreignKey: "id"})
-// Categories.hasMany(Products , {foreignKey: "categoryId"})
-
 Products.belongsTo(Categories , { as: "category"})
 
 Cart.belongsTo(Users, { as: "user" });
