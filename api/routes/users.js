@@ -8,11 +8,6 @@ usersRouter.put("/:id", (req, res) => {
   const userId = req.params.id;
 
   Users.findByPk(userId).then((user) => {
-    if (req.body.email || req.body.password) {
-      return res
-        .status(400)
-        .send("No se pueden editar el email ni la contraseña");
-    }
     user
       .update(req.body, {
         returning: true,
@@ -56,11 +51,13 @@ usersRouter.post("/login", async (req, res, next) => {
         id: user.id,
         email,
         name: user.name,
-        lastname: user.lastname,
+        lastName: user.lastName,
+        address: user.address,
         isAdmin: user.isAdmin,
       };
       const token = await generateToken(userData);
-      res.cookie("token", token).send(userData);
+      res.cookie("token", token);
+      res.send(userData);
     } else {
       return res.sendStatus(401);
     }
@@ -91,7 +88,6 @@ usersRouter.get("/:id", (req, res) => {
   }).then((user) => {
     res.send(user);
   });
-
 });
 
 // Ruta para obtener las compras ya completadas de un usuario
