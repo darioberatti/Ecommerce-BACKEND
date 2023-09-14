@@ -50,7 +50,7 @@ Users.init(
     },
     history: {
       type: Sequelize.ARRAY(Sequelize.INTEGER),
-      defaultValue: []
+      defaultValue: [],
     },
     salt: {
       type: Sequelize.STRING,
@@ -68,12 +68,6 @@ Users.beforeCreate((user) => {
   user.salt = salt;
 
   return user.hash(user.password, salt).then((hash) => {
-    user.password = hash;
-  });
-});
-
-Users.beforeUpdate((user) => {
-  return user.hash(user.password, user.salt).then((hash) => {
     user.password = hash;
   });
 });

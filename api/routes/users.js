@@ -8,11 +8,19 @@ usersRouter.put("/:id", (req, res) => {
   const userId = req.params.id;
 
   Users.findByPk(userId).then((user) => {
+    if (req.body.email || req.body.password) {
+      return res
+        .status(400)
+        .send("No se pueden editar el email ni la contraseña");
+    }
     user
       .update(req.body, {
         returning: true,
       })
-      .then((response) => res.send(response));
+      .then((response) => res.send(response))
+      .catch((error) => {
+        res.status(500).send("Error al actualizar el usuario");
+      });
   });
 });
 
@@ -76,11 +84,14 @@ usersRouter.get("/admin/all", validateUser, validateAdmin, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-usersRouter.get("/:userId/history", validateUser, (req, res) => {
-  const userId = req.params.userId;
-  Cart.findAll({ where: { userId: userId, completed: true } })
-    .then((result) => res.send(result))
-    .catch((err) => console.log(err));
+usersRouter.get("/:id", (req, res) => {
+  const userId = req.params.id;
+  Users.findByPk(userId, {
+    attributes: { exclude: ["password", "email"] },
+  }).then((user) => {
+    res.send(user);
+  });
+
 });
 
 module.exports = usersRouter;
