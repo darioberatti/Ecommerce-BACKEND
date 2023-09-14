@@ -26,7 +26,7 @@ productsRouter.get("/search", (req, res, next) => {
 
 productsRouter.get("/:id", (req, res, next) => {
   const { id } = req.params;
-  Products.findByPk(id, { include: { model: Categories, as: "category" } })
+  Products.findByPk(id)
     .then((product) => {
       res.send(product);
     })
@@ -87,5 +87,19 @@ productsRouter.delete(
       });
   }
 );
+
+productsRouter.put("/:id", (req, res) => {
+  //Ruta para modificar stock al checkout
+  const productId = req.params.id;
+
+  Products.findByPk(productId).then((product) => {
+    product
+      .update(req.body, {
+        returning: true,
+      })
+      .then((response) => res.status(200).send(response))
+      .catch((err) => console.error(err));
+  });
+});
 
 module.exports = productsRouter;
