@@ -1,5 +1,5 @@
 const express = require("express");
-const { validateToken, generateToken } = require("../config/token");
+const { generateToken } = require("../config/token");
 const { validateUser, validateAdmin } = require("../middleware/auth");
 const usersRouter = express.Router();
 const { Users, Cart } = require("../models");
@@ -91,6 +91,7 @@ usersRouter.get("/:id", (req, res) => {
   }).then((user) => {
     res.send(user);
   });
+
 });
 
 module.exports = usersRouter;
