@@ -8,7 +8,7 @@ Nos dedicamos a la venta de indumentaria deportiva antigua (precisamente Futbol)
 ## Inicializacion
 
 - Primero clonamos este repositorio.
-- Abrimos una nueva terminal, nos paramos sobre la carpeta del repositorio y ejecutamos el comando  "code ." para abrirlo en **Visual Studio Code** o tu editor de texto de preferencia. 
+- Abrimos una nueva terminal, nos paramos sobre la carpeta del repositorio y ejecutamos el comando  `code .` para abrirlo en **Visual Studio Code** o tu editor de texto de preferencia. 
 - Una vez abierto en nuestro editor de texto, en la raiz del proyecto vamos a crear un archivo nuevo que se llame ".env", para poder crear nuestras variables de entorno. Para guiarnos sobre que valores debe tener este nuevo archivo, revisaremos el que posee el nombre ".env.example" el cual tiene las indicaciones de que deben poseer las variables de entorno de nuestro archivo ".env"
 - Una vez hecho todo esto, abrimos nuevamente la terminal (siempre parados sobre la carpeta del repositorio) y ejecutamos los siguientes comandos:  
 	- `npm i` - Para instalar las dependencias.
