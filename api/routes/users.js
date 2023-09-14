@@ -94,4 +94,13 @@ usersRouter.get("/:id", (req, res) => {
 
 });
 
+// Ruta para obtener las compras ya completadas de un usuario
+// REVISAR, A VECES TIRA UN ERROR EN LA TERMINAL
+usersRouter.get("/:userId/history", validateUser, (req, res) => {
+  const userId = req.params.userId;
+  Cart.findAll({ where: { userId: userId, completed: true } })
+    .then((result) => res.send(result))
+    .catch((err) => console.log(err));
+});
+
 module.exports = usersRouter;

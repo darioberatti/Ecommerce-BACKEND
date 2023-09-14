@@ -124,7 +124,6 @@ cartRouter.put("/:id", validateUser, (req, res) => {
       })
       .then((response) => {
         Users.findByPk(response.userId).then((user) => {
-          console.log("User cart-->", user);
           transporter.sendMail({
             from: '"Retro Futbol Club" <e.retrofutbolclub@gmail.com>', // sender address
             to: `${user.email}`, // list of receivers
