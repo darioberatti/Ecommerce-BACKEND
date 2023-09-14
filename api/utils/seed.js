@@ -13,9 +13,6 @@ async function seedDataBaseCategories() {
       {
         type: "Shorts",
       },
-      {
-        type: "Pantalones",
-      },
     
     ]);
   } catch (error) {
