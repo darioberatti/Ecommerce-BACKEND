@@ -239,13 +239,13 @@ async function seedDataBase() {
         size: ["L"],
         team: "Selección Holanda",
         country: "Holanda",
-        year: 1983,
+        year: 1974,
         price: 99.99,
         stock: 33,
-        description: "Camiseta Retro - Selección Holanda 1983",
+        description: "Camiseta Retro - Selección Holanda - Johan Cruyff - 1974",
         urlImg: [
-          "https://acdn.mitiendanube.com/stores/216/721/products/holanda-fondo1-f619ae5775745fab9916349427844292-1024-1024.webp",
-          "https://acdn.mitiendanube.com/stores/216/721/products/holanda-fondo-esp1-2ed88fd0917632d0b616349427845677-1024-1024.webp",
+          "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230413_2031551-953d9b1d87079c3e4616814904078375-1024-1024.webp",
+          "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230413_2032201-3bab0e29b52697853c16814904079402-1024-1024.webp",
         ],
       },
       {
