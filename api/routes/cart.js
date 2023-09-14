@@ -103,7 +103,9 @@ cartRouter.delete("/:productId", validateUser, async (req, res, next) => {
       findCart.save();
       if (existingCartItem.quantity > 1) {
         existingCartItem.quantity -= 1;
-        return existingCartItem.save();
+        await existingCartItem.save();
+
+        res.sendStatus(200).end()
       } else {
         await findCart.removeProduct(findProduct);
       }
