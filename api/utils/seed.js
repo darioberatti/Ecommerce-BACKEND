@@ -259,7 +259,7 @@ async function seedDataBase() {
         stock: 33,
         description: "Camiseta Retro - Independiente - Bochini #10 1978",
         urlImg: [
-          "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20220420_092212-2fcd1151e5c14f2cde16504581648660-1024-1024.webp",
+          "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230307_1821311-4e2f792fbb549e1b0e16782298945239-1024-1024.webp", "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230307_1823031-cd39f4542d69c775f716782298946110-1024-1024.webp"
         ],
       },
       {
