@@ -1,5 +1,5 @@
 const express = require("express");
-const { validateToken, generateToken } = require("../config/token");
+const { generateToken } = require("../config/token");
 const { validateUser, validateAdmin } = require("../middleware/auth");
 const usersRouter = express.Router();
 const { Users, Cart } = require("../models");
@@ -49,7 +49,7 @@ usersRouter.post("/login", async (req, res, next) => {
         email,
         name: user.name,
         lastname: user.lastname,
-        isAdmin: user.isAdmin
+        isAdmin: user.isAdmin,
       };
       const token = await generateToken(userData);
       res.cookie("token", token).send(userData);
@@ -76,16 +76,11 @@ usersRouter.get("/admin/all", validateUser, validateAdmin, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-
-// Ruta para obtener las compras ya completadas de un usuario
-// REVISAR, A VECES TIRA UN ERROR EN LA TERMINAL
 usersRouter.get("/:userId/history", validateUser, (req, res) => {
   const userId = req.params.userId;
   Cart.findAll({ where: { userId: userId, completed: true } })
     .then((result) => res.send(result))
     .catch((err) => console.log(err));
 });
-
-
 
 module.exports = usersRouter;

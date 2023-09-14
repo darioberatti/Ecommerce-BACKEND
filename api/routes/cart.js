@@ -1,7 +1,7 @@
 const express = require("express");
 const cartRouter = express.Router();
 const { validateUser } = require("../middleware/auth.js");
-const { Cart, Products, Users, cart_products } = require("../models");
+const { Cart, Products, Users } = require("../models");
 const transporter = require("../config/mailer.js");
 
 //RUTA PARA OBTENER TODOS LOS PRODUCTOS DEL CARRITO ACTIVO DE UN USER ESPECIFICO
@@ -18,7 +18,6 @@ cartRouter.get("/", validateUser, (req, res, next) => {
             res.send({ items, cart });
           });
         })
-        /*    .then((carrito) => res.send()) */
         .catch((err) => next(err));
     })
     .catch((err) => next(err));
@@ -113,7 +112,6 @@ cartRouter.delete("/:productId", validateUser, async (req, res, next) => {
     next(err);
   }
 });
-
 
 //Ruta que actualiza un cart, la usamos para realizar el checkout, confirmar la compra y enviar el mail
 cartRouter.put("/:id", validateUser, (req, res) => {

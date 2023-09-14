@@ -1,6 +1,6 @@
 const express = require("express");
 const productsRouter = express.Router();
-const { Users, Products, Cart, Categories } = require("../models");
+const { Products, Categories } = require("../models");
 const { validateUser, validateAdmin } = require("../middleware/auth");
 const { Op, Sequelize } = require("sequelize");
 
