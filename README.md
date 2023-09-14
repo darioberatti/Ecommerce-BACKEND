@@ -12,8 +12,7 @@ Nos dedicamos a la venta de indumentaria deportiva antigua (precisamente Futbol)
 - Una vez abierto en nuestro editor de texto, en la raiz del proyecto vamos a crear un archivo nuevo que se llame ".env", para poder crear nuestras variables de entorno. Para guiarnos sobre que valores debe tener este nuevo archivo, revisaremos el que posee el nombre ".env.example" el cual tiene las indicaciones de que deben poseer las variables de entorno de nuestro archivo ".env"
 - Una vez hecho todo esto, abrimos nuevamente la terminal (siempre parados sobre la carpeta del repositorio) y ejecutamos los siguientes comandos:  
 	- `npm i` - Para instalar las dependencias.
-	- `npm run seedCat` - Para setear las categorias de los productos del E-commerce en la base de datos.
-	- `npm run seed` - Seteamos un usuario (con permimos de administrador) y una serie de productos en la base de datos para poder interactuar con la misma. 
+	- `npm run seed` - Seteamos las categorías de los productos, un usuario (con permimos de administrador) y una serie de productos en la base de datos para poder interactuar con la misma. 
 	- `npm start` - Para levantar el servidor.
 
 ## Metodologia de Trabajo
