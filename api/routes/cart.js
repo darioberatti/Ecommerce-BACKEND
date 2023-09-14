@@ -82,37 +82,81 @@ cartRouter.post("/:productId", validateUser, (req, res, next) => {
 //Ruta para eliminar un producto del carrito PARA REVISAR JUNTO AL FRONT
 
 cartRouter.delete("/:productId", validateUser, async (req, res, next) => {
-  try {
-    const { email } = req.user.payload;
-    const { productId } = req.params;
-    const findUser = await Users.findOne({ where: { email } });
-    const findProduct = await Products.findByPk(productId);
+  const { email } = req.user.payload;
+  const { productId } = req.params;
 
-    if (!findProduct) return res.sendStatus(404).end();
-    const findCart = await Cart.findOne({ where: { userId: findUser.id } });
-
-    if (!findCart) return res.sendStatus(500).end();
-    const totalItemsInCart = await findCart.getProducts();
-    const existsOnCart = totalItemsInCart.find(
-      (product) => product.id === findProduct.id
-    );
-
-    const existingCartItem = existsOnCart.cart_products;
-    if (existsOnCart) {
-      findCart.total -= findProduct.price;
-      findCart.save();
-      if (existingCartItem.quantity > 1) {
-        existingCartItem.quantity -= 1;
-        await existingCartItem.save();
-
-        res.sendStatus(200).end()
-      } else {
-        await findCart.removeProduct(findProduct);
+  Users.findOne({ where: { email } })
+    .then((findUser) => {
+      if (!findUser) {
+        return res.sendStatus(404).end();
       }
-    }
-  } catch (err) {
-    next(err);
-  }
+
+      Products.findByPk(productId)
+        .then((findProduct) => {
+          if (!findProduct) {
+            return res.sendStatus(404).end();
+          }
+
+          Cart.findOne({ where: { userId: findUser.id } })
+            .then((findCart) => {
+              if (!findCart) {
+                return res.sendStatus(500).end();
+              }
+
+              findCart.getProducts()
+                .then((totalItemsInCart) => {
+                  const existsOnCart = totalItemsInCart.find(
+                    (product) => product.id === findProduct.id
+                  );
+
+                  if (!existsOnCart) {
+                    return res.sendStatus(404).end();
+                  }
+
+                  const existingCartItem = existsOnCart.cart_products;
+
+                  if (existingCartItem.quantity > 1) {
+                    existingCartItem.quantity -= 1;
+                    existingCartItem.save()
+                      .then(() => {
+                        findCart.total -= findProduct.price;
+                        findCart.save()
+                          .then(() => {
+                            res.status(200).end();
+                          })
+                          .catch((err) => {
+                            next(err);
+                          });
+                      })
+                      .catch((err) => {
+                        next(err);
+                      });
+                  } else {
+                    findCart.removeProduct(findProduct)
+                      .then(() => {
+                        findCart.total -= findProduct.price;
+                        findCart.save()
+                          .then(() => {
+                            res.status(200).end();
+                          })
+                          .catch((err) => {
+                            next(err);
+                          });
+                      })
+                      .catch((err) => {
+                        next(err);
+                      });
+                  }
+                })
+            })
+        })
+        .catch((err) => {
+          next(err);
+        });
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 //Ruta que actualiza un cart, la usamos para realizar el checkout, confirmar la compra y enviar el mail
