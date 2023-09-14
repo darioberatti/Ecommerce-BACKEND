@@ -16,12 +16,18 @@ Nos dedicamos a la venta de indumentaria deportiva antigua (precisamente Futbol)
 	- "npm run seed" - Seteamos un usuario (con permimos de administrador) y una serie de productos en la base de datos para poder interactuar con la misma. 
 	- "npm start" - Para levantar el servidor.
 
+## Metodologia de Trabajo
+- Antes de arrancar a trabajar, tener en cuenta las siguientes pautas cada vez que se vaya a crear una nueva funcion en el proyecto:
+	- En la terminal, parados sobre la carpeta del repositorio, movernos a la rama de produccion "develop" ejecutando `git checkout develop`.
+	- Desde ahi, ejecutar `git pull` para obtener los cambios mas recientes.
+	- Luego, ejecutar `git checkout -b "feature/(nombreDeLaFuncion)"` para crear una nueva rama de trabajo o `git checkout -b "bugfix/(nombreDeLaFuncion)` para crear una rama en la que arreglaras algun bug.
+- Para guardar los cambios: 
+	- `git add .` 
+	- `git commit -m "(especificarCambios)"`
+	- `git push`
+	- Realizar el merge de la rama teniendo como base la develop.
+
 ## Finalmente
 ###### TE SUGERIMOS IR Y SEGUIR LOS PASOS DEL ARCHIVO "README.MD" DEL REPOSITORIO QUE PERTENECE AL FRONT-END DE ESTE PROYECTO: <a href="https://github.com/martinferrando2005/Ecommerce-FRONTEND.git">Ecommerce-FRONTEND</a>
 
-## Integrantes
 
-```javascript 
-const integrantes = [ "Mateo Navarro", " Santiago Moran", " Dario Beratti", " Martin Ferrando"]
-integrantes.join(",") // "Mateo Navarro, Santiago Moran, Dario Beratti, Martin Ferrando"
-```
