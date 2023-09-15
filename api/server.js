@@ -1,10 +1,9 @@
 // configuracion del SERVIDOR
-require("dotenv").config();
 const express = require("express");
 const db = require("./config/db");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const routes = require("./routes");
+const routes = require("./routes/index.routes");
 const models = require("./models");
 const app = express();
 
@@ -18,7 +17,6 @@ app.use(
 );
 app.use(cookieParser());
 app.use("/api", routes);
-
 db.sync({ force: false })
   .then(function () {
     app.listen(3001, () =>

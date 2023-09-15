@@ -1,7 +1,7 @@
 const express = require("express");
 const cartRouter = express.Router();
 const { validateUser } = require("../middleware/auth.js");
-const { Cart, Products, Users } = require("../models");
+const { Cart, Products, Users } = require("../models/index.js");
 const transporter = require("../config/mailer.js");
 
 //RUTA PARA OBTENER TODOS LOS PRODUCTOS DEL CARRITO ACTIVO DE UN USER ESPECIFICO
@@ -97,58 +97,60 @@ cartRouter.delete("/:productId", validateUser, async (req, res, next) => {
             return res.sendStatus(404).end();
           }
 
-          Cart.findOne({ where: { userId: findUser.id } })
-            .then((findCart) => {
-              if (!findCart) {
-                return res.sendStatus(500).end();
+          Cart.findOne({ where: { userId: findUser.id } }).then((findCart) => {
+            if (!findCart) {
+              return res.sendStatus(500).end();
+            }
+
+            findCart.getProducts().then((totalItemsInCart) => {
+              const existsOnCart = totalItemsInCart.find(
+                (product) => product.id === findProduct.id
+              );
+
+              if (!existsOnCart) {
+                return res.sendStatus(404).end();
               }
 
-              findCart.getProducts()
-                .then((totalItemsInCart) => {
-                  const existsOnCart = totalItemsInCart.find(
-                    (product) => product.id === findProduct.id
-                  );
+              const existingCartItem = existsOnCart.cart_products;
 
-                  if (!existsOnCart) {
-                    return res.sendStatus(404).end();
-                  }
-
-                  const existingCartItem = existsOnCart.cart_products;
-
-                  if (existingCartItem.quantity > 1) {
-                    existingCartItem.quantity -= 1;
-                    existingCartItem.save()
+              if (existingCartItem.quantity > 1) {
+                existingCartItem.quantity -= 1;
+                existingCartItem
+                  .save()
+                  .then(() => {
+                    findCart.total -= findProduct.price;
+                    findCart
+                      .save()
                       .then(() => {
-                        findCart.total -= findProduct.price;
-                        findCart.save()
-                          .then(() => {
-                            res.status(200).end();
-                          })
-                          .catch((err) => {
-                            next(err);
-                          });
+                        res.status(200).end();
                       })
                       .catch((err) => {
                         next(err);
                       });
-                  } else {
-                    findCart.removeProduct(findProduct)
+                  })
+                  .catch((err) => {
+                    next(err);
+                  });
+              } else {
+                findCart
+                  .removeProduct(findProduct)
+                  .then(() => {
+                    findCart.total -= findProduct.price;
+                    findCart
+                      .save()
                       .then(() => {
-                        findCart.total -= findProduct.price;
-                        findCart.save()
-                          .then(() => {
-                            res.status(200).end();
-                          })
-                          .catch((err) => {
-                            next(err);
-                          });
+                        res.status(200).end();
                       })
                       .catch((err) => {
                         next(err);
                       });
-                  }
-                })
-            })
+                  })
+                  .catch((err) => {
+                    next(err);
+                  });
+              }
+            });
+          });
         })
         .catch((err) => {
           next(err);
@@ -187,8 +189,6 @@ cartRouter.put("/:id", validateUser, (req, res) => {
       .catch((err) => console.error(err));
   });
 });
-
-
 
 cartRouter.get("/:cartId", (req, res) => {
   Cart.findOne({ where: { id: req.params.cartId } })
