@@ -13,9 +13,6 @@ async function seedDataBaseCategories() {
       {
         type: "Shorts",
       },
-      {
-        type: "Pantalones",
-      },
     
     ]);
   } catch (error) {
@@ -113,18 +110,18 @@ async function seedDataBase() {
         ],
       },
       {
-        name: "Camiseta Retro River Plate",
+        name: "Camiseta Retro Alemania",
         categoryId: 1,
         size: ["L"],
-        team: "River Plate",
-        country: "Argentina",
-        year: 1999,
+        team: "Selección Alemania",
+        country: "Alemania",
+        year: 1990,
         price: 99.99,
         stock: 33,
-        description: "Camiseta Retro - River Plate - Tricolor - 1999",
+        description: "Camiseta Retro - Selección Alemania - 1990",
         urlImg: [
-          "https://acdn.mitiendanube.com/stores/216/721/products/river-tricolor-frente1-bc2e7e43af52d44f5e16129179482050-1024-1024.webp",
-          "https://acdn.mitiendanube.com/stores/216/721/products/river-tricolor-espalda1-6cb0c8209c99582f3b16129179483302-1024-1024.webp",
+          "https://acdn.mitiendanube.com/stores/216/721/products/alemania-90-verde-frente1-2e5b40859bf0b6621b15904512368814-1024-1024.webp",
+          
         ],
       },
       {
@@ -219,18 +216,18 @@ async function seedDataBase() {
         ],
       },
       {
-        name: "Buzo Retro Boca Juniors",
+        name: "Buzo Retro Dinamarca",
         categoryId: 2,
         size: ["L"],
-        team: "Boca",
-        country: "Argentina",
-        year: 1981,
-        price: 99.99,
+        team: "Selección Dinamarca",
+        country: "Dinamarca",
+        year: 1988,
+        price: 119.99,
         stock: 33,
-        description: "Buzo Retro - Boca Juniors - Metropolitano 1981",
+        description: "Buzo Retro - Selección Dinamarca - 1988",
         urlImg: [
-          "https://acdn.mitiendanube.com/stores/216/721/products/camperita-boca-81-frente1-6410cb2b4a32e48a0216179036602496-1024-1024.webp",
-          "https://acdn.mitiendanube.com/stores/216/721/products/camperita-boca-81-espaldaa1-8a9d5fdc4541a0472116179036601980-1024-1024.webp",
+          "https://acdn.mitiendanube.com/stores/216/721/products/camperita-dinamarca-frente-ii1-2e7f6658c4c2a4ae2616109963232857-1024-1024.webp",
+          "https://acdn.mitiendanube.com/stores/216/721/products/camperita-dinamarca-espalda1-7c965561f3bd32a5ae16109963232490-1024-1024.webp",
         ],
       },
       {
@@ -239,13 +236,13 @@ async function seedDataBase() {
         size: ["L"],
         team: "Selección Holanda",
         country: "Holanda",
-        year: 1983,
+        year: 1974,
         price: 99.99,
         stock: 33,
-        description: "Camiseta Retro - Selección Holanda 1983",
+        description: "Camiseta Retro - Selección Holanda - Johan Cruyff - 1974",
         urlImg: [
-          "https://acdn.mitiendanube.com/stores/216/721/products/holanda-fondo1-f619ae5775745fab9916349427844292-1024-1024.webp",
-          "https://acdn.mitiendanube.com/stores/216/721/products/holanda-fondo-esp1-2ed88fd0917632d0b616349427845677-1024-1024.webp",
+          "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230413_2031551-953d9b1d87079c3e4616814904078375-1024-1024.webp",
+          "https://acdn.mitiendanube.com/stores/216/721/products/photoroom-20230413_2032201-3bab0e29b52697853c16814904079402-1024-1024.webp",
         ],
       },
       {
